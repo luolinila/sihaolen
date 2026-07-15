@@ -1,0 +1,23 @@
+__pycache__/
+*.pyc
+*.pyo
+
+# PyInstaller
+frontend/build/
+frontend/dist/
+frontend/*.spec
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# venv
+venv/
+.venv/
+
+# local
+upload.py
