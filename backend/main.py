@@ -4,10 +4,12 @@ sihaolen 冷笑话后端服务
 """
 
 from flask import Flask, jsonify, send_from_directory
+from flask_cors import CORS
 import pymysql
 import os
 
-app = Flask(__name__)
+app = Flask(__name__, static_folder="static", static_url_path="")
+CORS(app)
 app.config["JSON_AS_ASCII"] = False  # 返回中文不转义
 
 # 数据库配置
@@ -24,6 +26,15 @@ DB_CONFIG = {
 
 def get_connection():
     return pymysql.connect(**DB_CONFIG)
+
+
+@app.route("/")
+def index():
+    """网页前端"""
+    return send_from_directory(
+        os.path.join(os.path.dirname(os.path.abspath(__file__)), "static"),
+        "index.html",
+    )
 
 
 @app.route("/api/joke/random")
